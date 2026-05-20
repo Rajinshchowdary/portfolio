@@ -131,7 +131,7 @@ export default function AboutSection() {
             { label: "Years Experience", value: "2+" },
             { label: "Projects Built", value: "10+" },
             { label: "Technologies", value: "15+" },
-            { label: "Cups of Coffee", value: "∞" },
+            { label: "Books Read", value: "∞" },
           ].map((stat) => (
             <motion.div
               key={stat.label}

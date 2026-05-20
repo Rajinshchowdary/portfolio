@@ -22,7 +22,7 @@ export const NAV_ITEMS = [
   { label: "Projects", href: "#projects" },
   { label: "Journey", href: "#journey" },
   { label: "Interests", href: "#interests" },
-  { label: "Watchlist", href: "#watchlist" },
+
   { label: "Thoughts", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ] as const;
@@ -327,7 +327,7 @@ export const COMMAND_ITEMS = [
   { label: "Go to Projects", action: "navigate", target: "#projects", icon: "🚀" },
   { label: "Go to Journey", action: "navigate", target: "#journey", icon: "📚" },
   { label: "Go to Interests", action: "navigate", target: "#interests", icon: "✨" },
-  { label: "Go to Watchlist", action: "navigate", target: "#watchlist", icon: "🎬" },
+
   { label: "Go to Thoughts", action: "navigate", target: "#blog", icon: "✍️" },
   { label: "Go to Contact", action: "navigate", target: "#contact", icon: "📬" },
   { label: "Toggle Theme", action: "theme", target: "", icon: "🌗" },
