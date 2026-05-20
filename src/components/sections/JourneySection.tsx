@@ -5,7 +5,6 @@ import {
   EDUCATION,
   LEARNING_TOPICS,
   CERTIFICATIONS,
-  BOOKS,
 } from "@/lib/constants";
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations";
 
@@ -13,17 +12,11 @@ export default function JourneySection() {
   const statusColors: Record<string, string> = {
     active: "bg-green-400",
     exploring: "bg-amber-400",
-    reading: "bg-blue-400",
-    read: "bg-green-400/60",
-    queued: "bg-muted/40",
   };
 
   const statusLabels: Record<string, string> = {
     active: "Active",
     exploring: "Exploring",
-    reading: "Reading",
-    read: "Read",
-    queued: "Queued",
   };
 
   return (
@@ -47,11 +40,11 @@ export default function JourneySection() {
           </h2>
           <p className="mt-4 text-muted text-lg max-w-xl">
             A public knowledge garden — my studies, current explorations,
-            and the books shaping my thinking.
+            and research interests.
           </p>
         </motion.div>
 
-        <div className="mt-16 grid lg:grid-cols-3 gap-8">
+        <div className="mt-16 grid lg:grid-cols-2 gap-8">
           {/* Education & Certifications Column */}
           <motion.div
             variants={fadeUp}
@@ -108,111 +101,74 @@ export default function JourneySection() {
             </div>
           </motion.div>
 
-          {/* Learning Topics Column */}
+          {/* Learning Topics & Research Interests Column */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             custom={0.2}
-            className="p-6 rounded-2xl bg-surface border border-border"
+            className="space-y-6"
           >
-            <h3 className="text-xs uppercase tracking-wider text-accent font-mono mb-6">
-              Current Learning
-            </h3>
-            <div className="space-y-5">
-              {LEARNING_TOPICS.map((topic, i) => (
-                <motion.div
-                  key={topic.topic}
-                  variants={staggerItem}
-                  className="group"
-                >
-                  <div className="flex items-start gap-3">
-                    <span
-                      className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${
-                        statusColors[topic.status]
-                      }`}
-                    />
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <h4 className="text-sm font-medium text-foreground">
-                          {topic.topic}
-                        </h4>
-                        <span className="text-[10px] text-muted uppercase tracking-wider">
-                          {statusLabels[topic.status]}
-                        </span>
-                      </div>
-                      <div className="mt-2 flex flex-wrap gap-1">
-                        {topic.resources.map((r) => (
-                          <span
-                            key={r}
-                            className="px-2 py-0.5 text-[10px] font-mono rounded bg-surface-elevated text-muted/70 border border-border"
-                          >
-                            {r}
+            <div className="p-6 rounded-2xl bg-surface border border-border">
+              <h3 className="text-xs uppercase tracking-wider text-accent font-mono mb-6">
+                Current Learning
+              </h3>
+              <div className="space-y-5">
+                {LEARNING_TOPICS.map((topic, i) => (
+                  <motion.div
+                    key={topic.topic}
+                    variants={staggerItem}
+                    className="group"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span
+                        className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${
+                          statusColors[topic.status]
+                        }`}
+                      />
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between gap-2">
+                          <h4 className="text-sm font-medium text-foreground">
+                            {topic.topic}
+                          </h4>
+                          <span className="text-[10px] text-muted uppercase tracking-wider">
+                            {statusLabels[topic.status]}
                           </span>
-                        ))}
+                        </div>
+                        <div className="mt-2 flex flex-wrap gap-1">
+                          {topic.resources.map((r) => (
+                            <span
+                              key={r}
+                              className="px-2 py-0.5 text-[10px] font-mono rounded bg-surface-elevated text-muted/70 border border-border"
+                            >
+                              {r}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {i < LEARNING_TOPICS.length - 1 && (
-                    <div className="ml-1 mt-3 mb-1 h-4 border-l border-border" />
-                  )}
-                </motion.div>
-              ))}
-            </div>
+                    {i < LEARNING_TOPICS.length - 1 && (
+                      <div className="ml-1 mt-3 mb-1 h-4 border-l border-border" />
+                    )}
+                  </motion.div>
+                ))}
+              </div>
 
-            {/* Roadmap note */}
-            <div className="mt-8 p-4 rounded-xl bg-accent-glow border border-accent/10">
-              <p className="text-xs text-muted leading-relaxed">
-                <span className="text-accent font-medium">Next on the roadmap:</span>{" "}
-                Exploring Rust for systems programming, diving deeper into
-                category theory for functional programming, and building a
-                personal AI assistant.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Books Column */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={0.3}
-            className="p-6 rounded-2xl bg-surface border border-border"
-          >
-            <h3 className="text-xs uppercase tracking-wider text-accent font-mono mb-6">
-              Reading List
-            </h3>
-            <div className="space-y-4">
-              {BOOKS.map((book) => (
-                <div
-                  key={book.title}
-                  className="group flex items-start gap-3 p-3 -mx-3 rounded-xl hover:bg-surface-elevated transition-colors duration-300"
-                >
-                  {/* Book icon */}
-                  <div className="w-8 h-10 rounded bg-gradient-to-br from-accent/20 to-accent-light/10 border border-border flex items-center justify-center shrink-0">
-                    <span className="text-[10px] text-accent">📖</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-medium text-foreground truncate">
-                      {book.title}
-                    </h4>
-                    <p className="text-xs text-muted mt-0.5">{book.author}</p>
-                  </div>
-                  <span
-                    className={`mt-1 w-2 h-2 rounded-full shrink-0 ${
-                      statusColors[book.status]
-                    }`}
-                    title={statusLabels[book.status]}
-                  />
-                </div>
-              ))}
+              {/* Roadmap note */}
+              <div className="mt-8 p-4 rounded-xl bg-accent-glow border border-accent/10">
+                <p className="text-xs text-muted leading-relaxed">
+                  <span className="text-accent font-medium">Next on the roadmap:</span>{" "}
+                  Exploring Rust for systems programming, diving deeper into
+                  category theory for functional programming, and building a
+                  personal AI assistant.
+                </p>
+              </div>
             </div>
 
             {/* Research Interests */}
-            <div className="mt-8">
-              <h4 className="text-xs uppercase tracking-wider text-muted font-mono mb-3">
+            <div className="p-6 rounded-2xl bg-surface border border-border">
+              <h4 className="text-xs uppercase tracking-wider text-accent font-mono mb-3">
                 Research Interests
               </h4>
               <div className="flex flex-wrap gap-1.5">

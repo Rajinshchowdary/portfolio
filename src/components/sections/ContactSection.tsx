@@ -71,7 +71,7 @@ export default function ContactSection() {
           className="text-center"
         >
           <span className="text-xs tracking-[0.2em] uppercase text-accent font-mono">
-            007 — Contact
+            006 — Contact
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
             Let&apos;s

@@ -20,7 +20,7 @@ export default function BlogSection() {
           custom={0}
         >
           <span className="text-xs tracking-[0.2em] uppercase text-accent font-mono">
-            006 — Thoughts
+            005 — Thoughts
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
             Writing &

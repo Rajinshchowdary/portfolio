@@ -9,7 +9,7 @@ import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import JourneySection from "@/components/sections/JourneySection";
 import InterestsSection from "@/components/sections/InterestsSection";
-import WatchlistSection from "@/components/sections/WatchlistSection";
+
 import BlogSection from "@/components/sections/BlogSection";
 import ContactSection from "@/components/sections/ContactSection";
 import SectionDivider from "@/components/SectionDivider";
@@ -36,8 +36,7 @@ export default function Home() {
         <SectionDivider />
         <InterestsSection />
         <SectionDivider />
-        <WatchlistSection />
-        <SectionDivider />
+
         <BlogSection />
         <SectionDivider />
         <ContactSection />
