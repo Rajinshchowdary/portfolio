@@ -53,83 +53,116 @@ export default function CommandPalette() {
   };
 
   return (
-    <AnimatePresence>
-      {open && (
-        <>
-          {/* Overlay */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-            className="command-palette-overlay"
-          />
+    <>
+      {/* Floating Search Button */}
+      <motion.button
+        onClick={() => setOpen((prev) => !prev)}
+        className="fixed bottom-6 right-6 z-[9990] w-12 h-12 rounded-full bg-surface-elevated border border-border shadow-lg flex items-center justify-center text-muted hover:text-foreground hover:border-foreground/20 transition-colors duration-300 group cursor-hover"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        aria-label="Open command palette"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
 
-          {/* Palette */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[20%] left-1/2 -translate-x-1/2 w-[90vw] max-w-lg z-[9995] rounded-2xl bg-surface border border-border shadow-2xl overflow-hidden"
-          >
-            {/* Search Input */}
-            <div className="flex items-center gap-3 px-5 py-4 border-b border-border">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-muted shrink-0"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder="Type a command or search..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted/50 outline-none"
-              />
-              <kbd className="px-1.5 py-0.5 rounded text-[10px] text-muted bg-surface-elevated border border-border font-mono">
-                esc
-              </kbd>
-            </div>
+        {/* Desktop-only tooltip */}
+        <span className="absolute right-full mr-3 px-2 py-1 rounded-md bg-surface-elevated border border-border text-[10px] text-muted whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none hidden md:block">
+          ⌘K / Ctrl+K
+        </span>
+      </motion.button>
 
-            {/* Results */}
-            <div className="max-h-[300px] overflow-y-auto py-2">
-              {filtered.length === 0 ? (
-                <div className="px-5 py-8 text-center text-sm text-muted">
-                  No results found.
-                </div>
-              ) : (
-                filtered.map((item, i) => (
-                  <button
-                    key={item.label}
-                    onClick={() => handleSelect(item)}
-                    className="w-full flex items-center gap-3 px-5 py-2.5 text-left hover:bg-surface-elevated transition-colors duration-150"
-                  >
-                    <span className="text-base">{item.icon}</span>
-                    <span className="text-sm text-foreground">
-                      {item.label}
-                    </span>
-                  </button>
-                ))
-              )}
-            </div>
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+              className="command-palette-overlay"
+            />
 
-            {/* Footer */}
-            <div className="px-5 py-3 border-t border-border flex items-center justify-between text-[10px] text-muted">
-              <span>Navigate with ↑↓ · Select with ↵</span>
-              <span>⌘K to toggle</span>
-            </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+            {/* Palette */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="fixed top-[20%] left-1/2 -translate-x-1/2 w-[90vw] max-w-lg z-[9995] rounded-2xl bg-surface border border-border shadow-2xl overflow-hidden"
+            >
+              {/* Search Input */}
+              <div className="flex items-center gap-3 px-5 py-4 border-b border-border">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="text-muted shrink-0"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder="Type a command or search..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted/50 outline-none"
+                />
+                <kbd className="px-1.5 py-0.5 rounded text-[10px] text-muted bg-surface-elevated border border-border font-mono">
+                  esc
+                </kbd>
+              </div>
+
+              {/* Results */}
+              <div className="max-h-[300px] overflow-y-auto py-2">
+                {filtered.length === 0 ? (
+                  <div className="px-5 py-8 text-center text-sm text-muted">
+                    No results found.
+                  </div>
+                ) : (
+                  filtered.map((item, i) => (
+                    <button
+                      key={item.label}
+                      onClick={() => handleSelect(item)}
+                      className="w-full flex items-center gap-3 px-5 py-2.5 text-left hover:bg-surface-elevated transition-colors duration-150"
+                    >
+                      <span className="text-base">{item.icon}</span>
+                      <span className="text-sm text-foreground">
+                        {item.label}
+                      </span>
+                    </button>
+                  ))
+                )}
+              </div>
+
+              {/* Footer */}
+              <div className="px-5 py-3 border-t border-border flex items-center justify-between text-[10px] text-muted">
+                <span>Navigate with ↑↓ · Select with ↵</span>
+                <span className="hidden md:inline">⌘K / Ctrl+K to toggle</span>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

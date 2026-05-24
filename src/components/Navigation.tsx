@@ -132,11 +132,6 @@ export default function Navigation() {
               )}
             </motion.button>
 
-            {/* Cmd+K hint */}
-            <div className="ml-2 hidden lg:flex items-center gap-1 px-2 py-1 rounded-md bg-surface-elevated text-muted text-xs border border-border">
-              <kbd className="font-mono">⌘</kbd>
-              <kbd className="font-mono">K</kbd>
-            </div>
           </div>
 
           {/* Mobile Menu Button */}
