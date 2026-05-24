@@ -61,7 +61,7 @@ export default function Footer() {
             title="You found the easter egg! 🥚"
           >
             Built with Next.js, Tailwind CSS & Framer Motion · Deployed on
-            Vercel · Press ⌘K for magic ✨
+            Vercel ✨
           </p>
         </div>
       </div>
